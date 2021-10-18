@@ -1,22 +1,30 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+/*eslint-disable*/
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonDatetime, IonModal, IonButton } from '@ionic/react';
+import { useState } from 'react';
 import './Home.css';
 
 const Home: React.FC = () => {
+  const [dateValue, setDateValue] = useState('2000-05-07');
+  const [isOpen, setIsOpen]= useState(false);
+
+  const dateChangeHandler = (event: any) => {
+    const newDate = event?.detail?.value;
+    if (newDate) {
+      setDateValue(newDate);
+    }
+  }
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader collapse="condense">
         <IonToolbar>
           <IonTitle>Blank</IonTitle>
+         
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
+        <IonContent>
+          <IonDatetime
+        presentation="date"
+        />
       </IonContent>
     </IonPage>
   );
